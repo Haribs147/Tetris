@@ -4,7 +4,11 @@ import java.awt.*;
 
 public class L1 extends Block{
 
-    public L1 (int x, int y){
+    public L1() {
+        Create(Color.ORANGE);
+    }
+    @Override
+    public void setXY(int x, int y){
         // #   0
         // #   1
         // # # 2  3

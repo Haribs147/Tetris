@@ -13,6 +13,9 @@ public class GamePanel extends JPanel implements Runnable{
     public GamePanel(){
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.BLACK);
+
+        this.addKeyListener(new KeyHandler());
+        this.setFocusable(true);
     }
 
     public void launchGame() {
@@ -43,7 +46,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     private void update(){
-
+        board.update();
     }
 
     public void paintComponent(Graphics graphics){
