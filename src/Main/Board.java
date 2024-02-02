@@ -1,10 +1,11 @@
 package Main;
 
 import Blocks.Block;
-import Blocks.L1;
+import Blocks.*;
 import Blocks.Square;
 
 import java.awt.*;
+import java.util.Random;
 
 public class Board {
 
@@ -21,6 +22,9 @@ public class Board {
     final int starting_y;
 
     public static int dropTime = 60;
+
+    //TEST
+    public Block blocks[];
     //ARENA
     public Board(){
         left_x = GamePanel.WIDTH/2 - WIDTH/2;
@@ -30,12 +34,51 @@ public class Board {
 
         starting_x = GamePanel.WIDTH/2-30;
         starting_y = top_y + Square.SIZE;
-        block = new L1();
+        block = randBlock();
+    }
+//while jest wiêksze
+
+    private Block randBlock(){
+        Random random = new Random();
+        int random_number = random.nextInt(7) + 1;
+        if(random_number == 1){
+            block = new L1();
+        }
+        if(random_number == 2){
+            block = new L2();
+        }
+        if(random_number == 3){
+            block = new s();
+        }
+        if(random_number == 4){
+            block = new l();
+        }
+        if(random_number == 5){
+            block = new z1();
+        }
+        if(random_number == 6){
+            block = new z2();
+        }
+        if(random_number == 7){
+            block = new t();
+        }
         block.setXY(starting_x, starting_y);
+        return block;
     }
 
     public void update(){
         block.update();
+        if (block.s[0].y >= 700 || block.s[1].y >= 700 || block.s[2].y >= 700 || block.s[3].y >= 700){
+            block = randBlock();
+        }
+        if (block.s[0].x <= 390 || block.s[1].x <= 390 || block.s[2].x <= 390 || block.s[3].x <= 390){
+            while(block.s[0].x <= 390 || block.s[1].x <= 390 || block.s[2].x <= 390 || block.s[3].x <= 390){
+                block.s[0].x += 30;
+                block.s[1].x += 30;
+                block.s[2].x += 30;
+                block.s[3].x += 30;
+            }
+        }
     }
 
     public void draw(Graphics2D graphics2D){
