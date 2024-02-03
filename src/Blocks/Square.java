@@ -5,6 +5,7 @@ import java.awt.*;
 public class Square {
     public int x, y;
     public static int SIZE = 30;
+    public static final int DRAWSIZE = SIZE - 4;
     public Color c;
 
     public Square(Color c){
@@ -13,6 +14,6 @@ public class Square {
 
     public void draw(Graphics2D graphics2D){
         graphics2D.setColor(c);
-        graphics2D.fillRect(x, y, SIZE, SIZE);
+        graphics2D.drawRect(x, y, DRAWSIZE, DRAWSIZE);
     }
 }

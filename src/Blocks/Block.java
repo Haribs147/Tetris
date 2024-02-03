@@ -11,6 +11,7 @@ public abstract class Block {
     public Square[] tempS = new Square[4];
     int dropCounter = 0;
     public int direction = 1;
+
     public void Create(Color c){
         s[0] = new Square(c);
         s[1] = new Square(c);
@@ -34,7 +35,6 @@ public abstract class Block {
         s[2].y = tempS[2].y;
         s[3].x = tempS[3].x;
         s[3].y = tempS[3].y;
-
     }
 
     public void position1(){}
@@ -89,11 +89,9 @@ public abstract class Block {
 
     public void draw(Graphics2D graphics2D){
         graphics2D.setColor(s[0].c);
-        graphics2D.drawRect(s[0].x, s[0].y, Square.SIZE, Square.SIZE);
-        graphics2D.drawRect(s[1].x, s[1].y, Square.SIZE, Square.SIZE);
-        graphics2D.drawRect(s[2].x, s[2].y, Square.SIZE, Square.SIZE);
-        graphics2D.drawRect(s[3].x, s[3].y, Square.SIZE, Square.SIZE);
-
-
+        graphics2D.drawRect(s[0].x, s[0].y, Square.DRAWSIZE, Square.DRAWSIZE);
+        graphics2D.drawRect(s[1].x, s[1].y, Square.DRAWSIZE, Square.DRAWSIZE);
+        graphics2D.drawRect(s[2].x, s[2].y, Square.DRAWSIZE, Square.DRAWSIZE);
+        graphics2D.drawRect(s[3].x, s[3].y, Square.DRAWSIZE, Square.DRAWSIZE);
     }
 }
