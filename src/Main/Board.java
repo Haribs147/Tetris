@@ -16,7 +16,6 @@ public class Board {
     public static int right_x;
     public static int top_y;
     public static int bottom_y;
-
     //BLOCK
     Block block;
     Block nextBlock;
@@ -74,7 +73,9 @@ public class Board {
 
     public void update(){
         block.update();
-        if (block.s[0].y == 670 || block.s[1].y == 670 || block.s[2].y == 670 || block.s[3].y == 670){
+        int sliding = 0;
+        if (block.s[0].y == 670 || block.s[1].y == 670 || block.s[2].y == 670 || block.s[3].y == 670 || block.downCollision){
+
             staticSquares.add(block.s[0]);
             staticSquares.add(block.s[1]);
             staticSquares.add(block.s[2]);

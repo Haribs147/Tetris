@@ -14,6 +14,6 @@ public class Square {
 
     public void draw(Graphics2D graphics2D){
         graphics2D.setColor(c);
-        graphics2D.drawRect(x, y, DRAWSIZE, DRAWSIZE);
+        graphics2D.fillRect(x, y, DRAWSIZE, DRAWSIZE);
     }
 }
