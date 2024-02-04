@@ -27,8 +27,13 @@ public class Board {
     //Collisons
     public static ArrayList<Square> staticSquares = new ArrayList<>();
 
+    //SLIDING
+
     //TEST
     public Block blocks[];
+
+    //SCORING
+    public int [] lines;
 
     //ARENA
     public Board(){
@@ -41,6 +46,9 @@ public class Board {
         starting_y = top_y + Square.SIZE;
         block = randBlock();
         nextBlock = randBlock();
+        lines = new int [20];
+        for (int i = 0; i<20; i++)
+            lines[i] = 0;
     }
 
     private Block randBlock(){
@@ -72,14 +80,30 @@ public class Board {
     }
 
     public void update(){
-        block.update();
-        int sliding = 0;
-        if (block.s[0].y == 670 || block.s[1].y == 670 || block.s[2].y == 670 || block.s[3].y == 670 || block.downCollision){
 
+        block.update();
+        if (block.s[0].y == 670 || block.s[1].y == 670 || block.s[2].y == 670 || block.s[3].y == 670 || block.downCollision){
             staticSquares.add(block.s[0]);
             staticSquares.add(block.s[1]);
             staticSquares.add(block.s[2]);
             staticSquares.add(block.s[3]);
+            System.out.println(block.s[3].y);
+            lines[ (block.s[0].y - 100) / 30 ]++;
+            lines[ (block.s[1].y - 100) / 30 ]++;
+            lines[ (block.s[2].y - 100) / 30 ]++;
+            lines[ (block.s[3].y - 100) / 30 ]++;
+            for (int i = 0; i < 20 ; i++){
+                System.out.println(lines[i]);
+                if(lines[i] == 10){
+                    int y = i * 30 + 100;
+                    for(Square staticSquare : staticSquares){
+                        if (staticSquares.get(i).y == y){
+                            staticSquares.remove(i);
+                        }
+                    }
+                }
+            }
+
             block = nextBlock;
             nextBlock = randBlock();
         }

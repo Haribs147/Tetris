@@ -16,7 +16,7 @@ public abstract class Block {
     public boolean leftCollision = false;
     public boolean rightCollision = false;
     public boolean rotationCollision = false;
-    public boolean sliding = false;
+
     public void Create(Color c){
         s[0] = new Square(c);
         s[1] = new Square(c);
@@ -51,7 +51,6 @@ public abstract class Block {
     public void position2(){}
     public void position3(){}
     public void position4(){}
-
 
     public void update(){
         dropCounter++;
@@ -154,39 +153,4 @@ public abstract class Block {
         graphics2D.drawRect(s[2].x, s[2].y, Square.DRAWSIZE, Square.DRAWSIZE);
         graphics2D.drawRect(s[3].x, s[3].y, Square.DRAWSIZE, Square.DRAWSIZE);
     }
-
-    public void sliding(){
-        if(KeyHandler.a){
-            if(!leftCollision) {
-                s[0].x -= Square.SIZE;
-                s[1].x -= Square.SIZE;
-                s[2].x -= Square.SIZE;
-                s[3].x -= Square.SIZE;
-            }
-            leftCollision = false;
-            KeyHandler.a = false;
-        }
-        if(KeyHandler.d){
-            if (!rightCollision) {
-                s[0].x += Square.SIZE;
-                s[1].x += Square.SIZE;
-                s[2].x += Square.SIZE;
-                s[3].x += Square.SIZE;
-            }
-            rightCollision = false;
-            KeyHandler.d = false;
-        }
-        if(KeyHandler.w){
-            if (direction == 1)
-                position2();
-            else if (direction == 2)
-                position3();
-            else if (direction == 3)
-                position4();
-            else if (direction == 4)
-                position1();
-            KeyHandler.w = false;
-        }
-    }
-
 }
