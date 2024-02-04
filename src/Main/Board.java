@@ -96,7 +96,7 @@ public class Board {
                 System.out.println(lines[i]);
                 if(lines[i] == 10){
                     int y = i * 30 + 100;
-                    for(Square staticSquare : staticSquares){
+                    for(int j = 0; j < staticSquares.size(); j++){
                         if (staticSquares.get(i).y == y){
                             staticSquares.remove(i);
                         }
