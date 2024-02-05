@@ -21,7 +21,8 @@ public class Board {
     Block nextBlock;
     final int starting_x;
     final int starting_y;
-
+    final int nextBlock_x;
+    final int nextBlock_y;
     public static int dropTime = 60;
 
     //Collisons
@@ -44,8 +45,12 @@ public class Board {
 
         starting_x = GamePanel.WIDTH/2-30;
         starting_y = top_y + Square.SIZE;
+        nextBlock_x = right_x + 175;
+        nextBlock_y = top_y + 500;
         block = randBlock();
+        block.setXY(starting_x, starting_y);
         nextBlock = randBlock();
+        nextBlock.setXY(nextBlock_x, nextBlock_y);
         lines = new int [20];
         for (int i = 0; i<20; i++)
             lines[i] = 0;
@@ -75,7 +80,6 @@ public class Board {
         if(random_number == 7){
             block = new t();
         }
-        block.setXY(starting_x, starting_y);
         return block;
     }
 
@@ -87,23 +91,30 @@ public class Board {
             staticSquares.add(block.s[1]);
             staticSquares.add(block.s[2]);
             staticSquares.add(block.s[3]);
-            System.out.println(block.s[3].y);
             lines[ (block.s[0].y - 100) / 30 ]++;
             lines[ (block.s[1].y - 100) / 30 ]++;
             lines[ (block.s[2].y - 100) / 30 ]++;
             lines[ (block.s[3].y - 100) / 30 ]++;
+            int y = 0;
             for (int i = 0; i < 20 ; i++){
-                System.out.println(lines[i]);
                 if(lines[i] == 10){
-                    int y = i * 30 + 100;
-                    for(int j = 0; j < staticSquares.size(); j++){
-                        if (staticSquares.get(i).y == y){
-                            staticSquares.remove(i);
+                    y = i * 30 + 100;
+                    for(int j = staticSquares.size()-1; j >= 0; j--){
+                        if (staticSquares.get(j).y == y){
+                            staticSquares.remove(j);
+                        }
+                    }
+                    lines[i] = 0;
+                    for(int j = 0; j < staticSquares.size(); j++) {
+                        if (staticSquares.get(j).y < y){
+                            int newY = staticSquares.get(j).y + 30;
+                            staticSquares.get(j).setY(newY);
+                            lines[ ( newY - 100 ) / 30 ]++;
+                            lines[ (newY - 130 ) / 30 ]--;
                         }
                     }
                 }
             }
-
             block = nextBlock;
             nextBlock = randBlock();
         }
@@ -147,6 +158,9 @@ public class Board {
         if(block != null) {
             block.draw(graphics2D);
         }
+        
+        nextBlock.draw(graphics2D);
+
         for (Square staticSquare : staticSquares) {
             staticSquare.draw(graphics2D);
         }

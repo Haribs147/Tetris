@@ -16,4 +16,8 @@ public class Square {
         graphics2D.setColor(c);
         graphics2D.fillRect(x, y, DRAWSIZE, DRAWSIZE);
     }
+
+    public void setY(int y){
+        this.y = y;
+    }
 }
