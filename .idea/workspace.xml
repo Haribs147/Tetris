@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fbead36e-b9f1-4d23-b7c2-d2f279014959" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Blocks/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blocks/Block.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Board.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707124789765</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="sliding v1">
+      <created>1707163015424</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1707163015424</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -119,6 +124,7 @@
     <MESSAGE value="deleting lines" />
     <MESSAGE value="deleting linesv2" />
     <MESSAGE value="deleting lines final" />
-    <option name="LAST_COMMIT_MESSAGE" value="deleting lines final" />
+    <MESSAGE value="sliding v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="sliding v1" />
   </component>
 </project>
