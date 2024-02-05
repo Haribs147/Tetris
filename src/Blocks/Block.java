@@ -17,6 +17,12 @@ public abstract class Block {
     public boolean rightCollision = false;
     public boolean rotationCollision = false;
 
+    //SLIDING
+    public int sliding = 0;
+    public int flag = 0;
+
+    private int slidingCounter = 0;
+
     public void Create(Color c){
         s[0] = new Square(c);
         s[1] = new Square(c);
@@ -53,15 +59,40 @@ public abstract class Block {
     public void position4(){}
 
     public void update(){
-        dropCounter++;
-        if (dropCounter == Board.dropTime){
-            s[0].y += Square.SIZE;
-            s[1].y += Square.SIZE;
-            s[2].y += Square.SIZE;
-            s[3].y += Square.SIZE;
-            dropCounter = 0;
-        }
         checkStaticCollision();
+        //System.out.println(sliding);
+        //System.out.println(downCollision);
+        if (sliding == 0 || sliding == 2) {//zobaczyæ czy to nie powinno byæ ni¿ej pod if(sliding == 1)
+            dropCounter++;
+            if (dropCounter == Board.dropTime) {
+                s[0].y += Square.SIZE;
+                s[1].y += Square.SIZE;
+                s[2].y += Square.SIZE;
+                s[3].y += Square.SIZE;
+                dropCounter = 0;
+            }
+            if(KeyHandler.s){
+                if (!downCollision || s[0].y == 670 || s[1].y == 670 || s[2].y == 670 || s[3].y == 670) {
+                    System.out.println("co");
+                    s[0].y += Square.SIZE;
+                    s[1].y += Square.SIZE;
+                    s[2].y += Square.SIZE;
+                    s[3].y += Square.SIZE;
+                    dropCounter = 0;
+                }
+                KeyHandler.s = false;
+            }
+        }
+
+        if (sliding == 1) {
+            slidingCounter++;
+            if (slidingCounter == 60) {
+                slidingCounter = 0;
+                sliding = 2;
+                dropCounter = 0;
+            }
+        }
+
         if(KeyHandler.a){
             if(!leftCollision) {
                 s[0].x -= Square.SIZE;
@@ -93,27 +124,19 @@ public abstract class Block {
                 position1();
             KeyHandler.w = false;
         }
-        if(KeyHandler.s){
-            if (!downCollision) {
-                s[0].y += Square.SIZE;
-                s[1].y += Square.SIZE;
-                s[2].y += Square.SIZE;
-                s[3].y += Square.SIZE;
-                dropCounter = 0;
-            }
-            KeyHandler.s = false;
-        }
     }
 
     public void checkStaticCollision(){
+        downCollision = false;
         for (int i = 0; i < Board.staticSquares.size();i++){
             int x = Board.staticSquares.get(i).x;
             int y = Board.staticSquares.get(i).y;
-
             //check down
             for (int j = 0; j < s.length; j++){
                 if(s[j].x == x && s[j].y + Square.SIZE == y){
                     downCollision = true;
+                    if (sliding == 1 && slidingCounter == 60)
+                        sliding = 2;
                 }
             }
             //check left
