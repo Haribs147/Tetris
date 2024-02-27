@@ -113,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707163015424</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="sliding v2">
+      <created>1707174013559</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1707174013559</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -125,6 +132,7 @@
     <MESSAGE value="deleting linesv2" />
     <MESSAGE value="deleting lines final" />
     <MESSAGE value="sliding v1" />
-    <option name="LAST_COMMIT_MESSAGE" value="sliding v1" />
+    <MESSAGE value="sliding v2" />
+    <option name="LAST_COMMIT_MESSAGE" value="sliding v2" />
   </component>
 </project>
